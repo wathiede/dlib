@@ -20,6 +20,7 @@ namespace dlib
         jpeg_loader( const char* filename );
         jpeg_loader( const std::string& filename );
         jpeg_loader( const dlib::file& f );
+        jpeg_loader( FILE *fp, const char* filename );
 
         bool is_gray() const;
         bool is_rgb() const;
@@ -76,7 +77,8 @@ namespace dlib
         }
 
         void read_image( const char* filename );
-        unsigned long height_; 
+        void read_image( FILE* fp, const char* filename );
+        unsigned long height_;
         unsigned long width_;
         unsigned long output_components_;
         std::vector<unsigned char> data;
@@ -101,8 +103,7 @@ namespace dlib
 
 #ifdef NO_MAKEFILE
 #include "jpeg_loader.cpp"
-#endif 
+#endif
 
-#endif // DLIB_JPEG_IMPORT 
-
+#endif // DLIB_JPEG_IMPORT
 
